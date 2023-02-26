@@ -14,7 +14,7 @@ class Volunteer(models.Model):
   name = models.CharField(max_length=50)
   surname = models.CharField(max_length=50)
   email = models.EmailField()
-  gender = models.CharField(max_length=7, choices=choices_cmp, null=True)
+  gender = models.CharField(max_length=7, choices=choices_gnd, null=True)
   campus = models.CharField(max_length=3,choices=choices_cmp)
   date_joined = models.DateField(auto_now_add=True)
   login_number = models.IntegerField()
@@ -29,6 +29,8 @@ class Volunteer(models.Model):
 class Faculty(models.Model):
   name = models.CharField(max_length=100)
   hours_completed = models.IntegerField(null=True)
+  def __str__(self):
+    return self.name
 
 
 class Staff(Volunteer):
@@ -45,6 +47,9 @@ class SD_goal(models.Model):
   name = models.CharField(max_length=100)
   hours_completed = models.IntegerField(null=True)
 
+  def __str__(self):
+    return self.name
+
 class Projects(models.Model):
   choices_type = (
     ('SL', 'Service Learning'),
@@ -60,6 +65,9 @@ class Projects(models.Model):
   project_type = models.CharField(max_length=80, choices=choices_type)
   venue = models.CharField(max_length=120)
   completion_code = models.CharField(max_length=60, null=True)
+
+  def __str__(self):
+    return self.name
 
 
 

@@ -14,19 +14,24 @@ class Volunteer(models.Model):
   name = models.CharField(max_length=50)
   surname = models.CharField(max_length=50)
   email = models.EmailField()
-  access_number = models.CharField(max_length=9)
-  cellphone = models.CharField(max_length=10)
   gender = models.CharField(max_length=7, choices=choices_gnd, null=True)
-  campus = models.CharField(max_length=3,choices=choices_cmp, default='APK')
-  date_joined = models.DateField(auto_now_add=True, blank=True)
-  hours_completed = models.IntegerField(null=True ,default=0)
-  active = models.BooleanField(default=False, blank=True)
-  
+  campus = models.CharField(max_length=3,choices=choices_cmp)
+  date_joined = models.DateField(auto_now_add=True)
+  login_number = models.IntegerField()
+  hours_completed = models.IntegerField(null=True)
+
   class meta:
     abstract = True
   
   def __str__(self):
-    return self.access_number
+    return self.login_number
+
+class Faculty(models.Model):
+  name = models.CharField(max_length=100)
+  hours_completed = models.IntegerField(null=True)
+  def __str__(self):
+    return self.name
+
 
 class Staff(Volunteer):
   occupation = models.CharField(max_length=50,null=True)
@@ -71,6 +76,14 @@ class Project(models.Model):
     ('PEACE, JUSTICE & STRONG INSTITUTIONS', 'PEACE, JUSTICE & STRONG INSTITUTIONS'),
     ('PARTNERSHIPS FOR THE GOALS', 'PARTNERSHIPS FOR THE GOALS'),
   )
+class SD_goal(models.Model):
+  name = models.CharField(max_length=100)
+  hours_completed = models.IntegerField(null=True)
+
+  def __str__(self):
+    return self.name
+
+class Projects(models.Model):
   choices_type = (
     ('Service Learning', 'Service Learning'),
     ('Community-Based Research', 'Community-Based Research'),
@@ -93,6 +106,9 @@ class Participant(models.Model):
   staff = models.ForeignKey(Staff, on_delete=models.SET_NULL, null=True, blank=True)
   date = models.DateTimeField()
 
+
+  def __str__(self):
+    return self.name
 
 
 

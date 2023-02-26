@@ -2,8 +2,13 @@ from django.views.generic import TemplateView, CreateView
 from .models import Student, Project
 from .forms import CreateParticipant, CreateProject, CreateStudentVC
 from django.http import HttpResponse
+from django.shortcuts import render
+
+def home(request):
+    return render(request, 'index.html')
 
 class Dashboard(TemplateView):
+    template_name = 'index.html'
     def get_context_data(self, **kwargs):
         all_vcs = Student.objects.all()
         kwargs['active_vc'] = all_vcs.filter(active=True).count()
@@ -35,5 +40,3 @@ def recruiment(request, code=None):
         'form': recruitment_form,
     }
     return HttpResponse
-
-

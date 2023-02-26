@@ -4,9 +4,6 @@ from .forms import CreateParticipant, CreateProject, CreateStudentVC
 from django.http import HttpResponse
 from django.shortcuts import render
 
-def home(request):
-    return render(request, 'index.html')
-
 class Dashboard(TemplateView):
     template_name = 'index.html'
     def get_context_data(self, **kwargs):
@@ -15,8 +12,7 @@ class Dashboard(TemplateView):
         kwargs['active_projects'] = Project.objects.all().filter(active=True).count()
         kwargs['vc_hours'] = sum([vc.hours_completed for vc in all_vcs])
         kwargs['total_vc'] = all_vcs.count()
-        return super().get_context_data(**kwargs)
-    
+        return super().get_context_data(**kwargs)   
 
 def recruiment(request, code=None):
     if request.method == 'POST':

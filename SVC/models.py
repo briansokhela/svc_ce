@@ -16,21 +16,16 @@ class Volunteer(models.Model):
   email = models.EmailField()
   gender = models.CharField(max_length=7, choices=choices_gnd, null=True)
   campus = models.CharField(max_length=3,choices=choices_cmp)
+  cellphone = models.CharField(max_length=10)
   date_joined = models.DateField(auto_now_add=True)
-  login_number = models.IntegerField()
+  access_number = models.IntegerField()
   hours_completed = models.IntegerField(null=True)
 
   class meta:
     abstract = True
   
   def __str__(self):
-    return self.login_number
-
-class Faculty(models.Model):
-  name = models.CharField(max_length=100)
-  hours_completed = models.IntegerField(null=True)
-  def __str__(self):
-    return self.name
+    return self.access_number
 
 
 class Staff(Volunteer):
@@ -55,7 +50,7 @@ class Student(Volunteer):
   recruiting_id = models.CharField(max_length=64, null=True, blank=True)
 
 
- 
+
 class Project(models.Model):
   SD_GOALS = (
     ('NO POVERTY', 'NO POVERTY'),
@@ -76,14 +71,6 @@ class Project(models.Model):
     ('PEACE, JUSTICE & STRONG INSTITUTIONS', 'PEACE, JUSTICE & STRONG INSTITUTIONS'),
     ('PARTNERSHIPS FOR THE GOALS', 'PARTNERSHIPS FOR THE GOALS'),
   )
-class SD_goal(models.Model):
-  name = models.CharField(max_length=100)
-  hours_completed = models.IntegerField(null=True)
-
-  def __str__(self):
-    return self.name
-
-class Projects(models.Model):
   choices_type = (
     ('Service Learning', 'Service Learning'),
     ('Community-Based Research', 'Community-Based Research'),

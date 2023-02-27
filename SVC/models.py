@@ -20,6 +20,7 @@ class Volunteer(models.Model):
   date_joined = models.DateField(auto_now_add=True)
   access_number = models.IntegerField()
   hours_completed = models.IntegerField(null=True)
+  active = models.BooleanField(default=False)
 
   class meta:
     abstract = True
@@ -84,7 +85,7 @@ class Project(models.Model):
   vcs_needed = models.IntegerField()
   project_type = models.CharField(max_length=80, choices=choices_type)
   venue = models.CharField(max_length=120)
-  completion_code = models.CharField(max_length=60, null=True)
+  completion_code = models.CharField(max_length=60, null=True, blank=True)
   active = models.BooleanField(default=False)
 
 class Participant(models.Model):
@@ -93,9 +94,6 @@ class Participant(models.Model):
   staff = models.ForeignKey(Staff, on_delete=models.SET_NULL, null=True, blank=True)
   date = models.DateTimeField()
 
-
-  def __str__(self):
-    return self.name
 
 
 

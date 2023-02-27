@@ -1,11 +1,15 @@
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView, ListView
 from .models import Student, Project
 from .forms import CreateParticipant, CreateProject, CreateStudentVC
 from django.http import HttpResponse
 from django.shortcuts import render
 
-class Dashboard(TemplateView):
+class Dashboard(ListView):
+    model = Project
+    queryset = Project.objects.all().filter(active=True)
+    context_object_name = 'projects'
     template_name = 'index.html'
+
     def get_context_data(self, **kwargs):
         all_vcs = Student.objects.all()
         kwargs['active_vc'] = all_vcs.filter(active=True).count()

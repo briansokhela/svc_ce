@@ -20,6 +20,7 @@ class Volunteer(models.Model):
   date_joined = models.DateField(auto_now_add=True)
   access_number = models.IntegerField()
   hours_completed = models.IntegerField(null=True)
+  active = models.BooleanField(default=False)
 
   class meta:
     abstract = True

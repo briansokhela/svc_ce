@@ -8,6 +8,9 @@
     --dark: #191C24;
 }
 
+.uj-color {
+    color: var(--primary);
+}
 .back-to-top {
     position: fixed;
     display: none;

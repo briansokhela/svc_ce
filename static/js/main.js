@@ -64,20 +64,20 @@
     var myChart1 = new Chart(ctx1, {
         type: "bar",
         data: {
-            labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022"],
+            labels: ["CBE", "FADA", "FEBE", "FED", "FHS", "FSC", "LAW", "HMT"],
             datasets: [{
-                    label: "USA",
-                    data: [15, 30, 55, 65, 60, 80, 95],
+                    label: "Service Learning",
+                    data: [15, 30, 55, 65, 60, 80, 95, 120],
                     backgroundColor: "rgba(230, 83, 0, .7)"
                 },
                 {
-                    label: "UK",
-                    data: [8, 35, 40, 60, 70, 55, 75],
+                    label: "Community-Based Research",
+                    data: [8, 35, 40, 60, 70, 55, 75, 10],
                     backgroundColor: "rgba(230, 83, 0, .5)"
                 },
                 {
-                    label: "AU",
-                    data: [12, 25, 45, 55, 65, 70, 60],
+                    label: "Organised Outreach",
+                    data: [12, 25, 45, 55, 65, 70, 60, 70],
                     backgroundColor: "rgba(230, 83, 0, .3)"
                 }
             ]
@@ -93,16 +93,16 @@
     var myChart2 = new Chart(ctx2, {
         type: "line",
         data: {
-            labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022"],
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "July"],
             datasets: [{
-                    label: "Salse",
-                    data: [15, 30, 55, 45, 70, 65, 85],
+                    label: "Active VC's",
+                    data: [15, 30, 55, 45, 70, 65, 35],
                     backgroundColor: "rgba(230, 83, 0, .5)",
                     fill: true
                 },
                 {
-                    label: "Revenue",
-                    data: [99, 135, 170, 130, 190, 180, 270],
+                    label: "New VC's",
+                    data: [99, 135, 170, 130, 190, 180, 50],
                     backgroundColor: "rgba(230, 83, 0, .3)",
                     fill: true
                 }

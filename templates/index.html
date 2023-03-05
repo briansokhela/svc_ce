@@ -35,8 +35,6 @@
 <body>
     <div class="container-xxl position-relative bg-white d-flex p-0">
 
-
-
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
@@ -45,13 +43,14 @@
                 </a>
 
                 <div class="navbar-nav w-100">
-                    <a href="index.html" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-
+                    <a href="/" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="{% url 'vcs' %}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Student VC's</a>
+                    <a href="{% url 'recruitment-form' %}" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Form</a>
+                    
                 </div>
             </nav>
         </div>
         <!-- Sidebar End -->
-
 
         <!-- Content Start -->
         <div class="content">
@@ -156,7 +155,7 @@
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-light text-center rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Faculty Hours</h6>
+                                <h6 class="mb-0">Faculty Hours  </h6>
                                 <a href="">Show All</a>
                             </div>
                             <canvas id="worldwide-sales"></canvas>

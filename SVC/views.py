@@ -1,8 +1,10 @@
-from django.views.generic import TemplateView, CreateView, ListView
+from django.views.generic import TemplateView, CreateView, ListView, UpdateView, DetailView
 from .models import Student, Project
 from .forms import CreateParticipant, CreateProject, CreateStudentVC
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .utils import gen_recruiting_id
 
 class Dashboard(ListView):
     model = Project
@@ -33,10 +35,28 @@ def recruiment(request, code=None):
                     new_vc.save()
                 except:
                     pass
+            return redirect('recruitment-success')
+                
+        else:
+            messages.info(request, "Invalid Data")
+            return redirect('recruitment-form')
     else:
         recruitment_form = CreateStudentVC() 
     
     context = {
         'form': recruitment_form,
     }
-    return HttpResponse
+    return render(request, "form.html", context)
+
+class RecruitmentSuccess(TemplateView):
+    template_name = "form-success.html"
+
+class StudentVolunteers(ListView):
+    model = Student
+    queryset = Student.objects.all()
+    context_object_name = 'students'
+    template_name = 'table.html'
+
+def NewRecruitingId(request, pk):
+    gen_recruiting_id(pk)
+    return redirect('vcs')

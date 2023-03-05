@@ -11,10 +11,4 @@ def total_recruitments(recruiter: object):
     return recruiter.student_set.all().count()
 
 
-
-    
-
-    
-
-
     

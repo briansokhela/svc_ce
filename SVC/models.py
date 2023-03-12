@@ -90,11 +90,18 @@ class Project(models.Model):
   completion_code = models.CharField(max_length=60, null=True, blank=True)
   active = models.BooleanField(default=False)
 
+  def __str__(self):
+    return self.name
+
 class Participant(models.Model):
   project = models.ForeignKey(Project, on_delete=models.SET_NULL, null=True)
   vc = models.ForeignKey(Student, on_delete=models.SET_NULL, null=True, blank=True)
   staff = models.ForeignKey(Staff, on_delete=models.SET_NULL, null=True, blank=True)
   date = models.DateTimeField()
+
+  def __str__(self):
+    return self.vc.name + '-' + self.project.name
+
 
 
 

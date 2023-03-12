@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView, CreateView, ListView, UpdateView, DetailView
-from .models import Student, Project, Participant
+from .models import Student, Project, Volunteer, Staff, Participant
 from .forms import CreateParticipant, CreateProject, CreateStudentVC
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -8,15 +8,14 @@ from .utils import gen_recruiting_id,get_hours
 
 class Dashboard(ListView):
     model = Project
-    queryset = Project.objects.all().filter(active=True)
     context_object_name = 'projects'
-    template_name = 'index.html'
+    template_name = 'admin/index.html'
 
     def get_context_data(self, **kwargs):
         all_vcs = Student.objects.all()
         champions = Participant.objects.all()
         kwargs['active_vc'] = all_vcs.filter(active=True).count()
-        kwargs['active_projects'] = Project.objects.all().filter(active=True).count()
+        kwargs['active_projects'] = 0
         kwargs['vc_hours'] = sum([vc.hours_completed for vc in all_vcs])
         kwargs['total_vc'] = all_vcs.count()
         kwargs['CBE'] = get_hours('College of Business and Economics',champions)
@@ -60,12 +59,28 @@ def recruiment(request, code=None):
 class RecruitmentSuccess(TemplateView):
     template_name = "form-success.html"
 
-class StudentVolunteers(ListView):
-    model = Student
-    queryset = Student.objects.all()
-    context_object_name = 'students'
-    template_name = 'table.html'
+class Volunteers(TemplateView):
+    template_name = 'admin/volunteers.html'
 
-def NewRecruitingId(request, pk):
-    gen_recruiting_id(pk)
-    return redirect('vcs')
+    def get_context_data(self, **kwargs):
+        kwargs['volunteers'] = []
+        all_stu = Student.objects.all()
+        all_sta = Staff.objects.all()
+        for stu_vc in all_stu:
+            kwargs['volunteers'].append(stu_vc)
+        
+        for sta_vc in all_sta:
+            kwargs['volunteers'].append(sta_vc)
+        print(kwargs['volunteers'])
+        return super().get_context_data(**kwargs)
+
+class svcDetials(DetailView):
+    model = Student
+    context_object_name = 'student'
+    template_name = 'admin/vc-details.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['programs'] = self.get_object().participant_set.all()
+        return super().get_context_data(**kwargs)
+
+

@@ -73,7 +73,6 @@ class Student(Volunteer):
 
 
 class Project(models.Model):
-
   choices_type = (
     ('Service Learning', 'Service Learning'),
     ('Community-Based Research', 'Community-Based Research'),
@@ -82,26 +81,32 @@ class Project(models.Model):
   goal= models.CharField(max_length=50, choices=SD_GOALS)
   name = models.CharField(max_length=100)
   description = models.CharField(max_length=3000, null=True)
+  project_type = models.CharField(max_length=80, choices=choices_type)
+  completion_code = models.CharField(max_length=60, null=True, blank=True)
+  
+
+class Occurrence(models.Model):
+  project = models.ForeignKey(Project, on_delete=models.CASCADE, null=True)
+  venue = models.CharField(max_length=120)
+  vcs_needed = models.IntegerField()
   date = models.DateTimeField()
   expected_duration = models.IntegerField()
-  vcs_needed = models.IntegerField()
-  project_type = models.CharField(max_length=80, choices=choices_type)
-  venue = models.CharField(max_length=120)
-  completion_code = models.CharField(max_length=60, null=True, blank=True)
   active = models.BooleanField(default=False)
 
   def __str__(self):
-    return self.name
+    return self.project.name
+
 
 class Participant(models.Model):
-  project = models.ForeignKey(Project, on_delete=models.SET_NULL, null=True)
+  occurrence = models.ForeignKey(Occurrence, on_delete=models.SET_NULL, null=True)
   vc = models.ForeignKey(Student, on_delete=models.SET_NULL, null=True, blank=True)
   staff = models.ForeignKey(Staff, on_delete=models.SET_NULL, null=True, blank=True)
-  date = models.DateTimeField()
 
   def __str__(self):
-    return self.vc.name + '-' + self.project.name
-
+    if self.vc is not None:
+      return self.vc.name + '-' + str(self.project.date)
+    elif self.staff is not None:
+      return self.staff.name + '-' + str(self.project.date)
 
 
 

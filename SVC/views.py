@@ -83,4 +83,19 @@ class svcDetials(DetailView):
         kwargs['programs'] = self.get_object().participant_set.all()
         return super().get_context_data(**kwargs)
 
+class Programs(ListView):
+    model = Project
+    queryset = Project.objects.all()
+    context_object_name = 'projects'
+    template_name = 'admin/programs.html'
+
+class ProgramsDetails(DetailView):
+    model = Project
+    context_object_name = 'program'
+    template_name = 'admin/program-details.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['project_occurrences'] = self.get_object().occurrence_set.all()
+        return super().get_context_data(**kwargs)
+
 

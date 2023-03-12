@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="{% static 'assets/vendor/nucleo/css/nucleo.css' %}" type="text/css">
   <link rel="stylesheet" href="{% static 'assets/vendor/@fortawesome/fontawesome-free/css/all.min.css' %}" type="text/css">
   <!-- Argon CSS -->
-  <link rel="stylesheet" href="{% static 'assets/css/argon.css?v=1.2.0' %}" type="text/css">
+  <link rel="stylesheet" href="{% static 'assets/css/argon.css' %}" type="text/css">
 </head>
 
 <body>
@@ -50,19 +50,19 @@
           <!-- Nav items -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="examples/dashboard.html">
+              <a class="nav-link" href="/">
                 <i class="ni ni-tv-2 text-primary"></i>
                 <span class="nav-link-text">Dashboard</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="examples/dashboard.html">
+              <a class="nav-link" href="{% url 'vc' %}">
                 <i class="ni ni-circle-08 text-pink"></i>
                 <span class="nav-link-text">Voltunteers</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="examples/dashboard.html">
+              <a class="nav-link active" href="{% url 'programs' %}">
                 <i class="ni ni-send text-dark"></i>
                 <span class="nav-link-text">Programs</span>
               </a>
@@ -84,7 +84,7 @@
   <!-- Main content -->
   <div class="main-content" id="panel">
     <!-- Topnav -->
-    {% include 'templates/admin/navbar.html' %}
+    {% include 'admin/navbar.html' %}
     <!-- Header -->
     <div class="header bg-primary pb-6">
       <div class="container-fluid">
@@ -114,13 +114,13 @@
 
           <div class="card">
             <div class="card-header">
-              Service Learning
+              {{program.project_type}}
             </div>
             <div class="card-body">
-              <h1 class="card-title">Data Capturing</h1>
-              <h5 class="card-title" style="line-height: 0.6;!important">SD GOAL: No Poverty</h5>
-              <h6 class="card-title" style="line-height: 0.6;!important">Total Hours: 10</h6>
-              <p class="card-text">This is a description</p>
+              <h1 class="card-title">{{program.name}}</h1>
+              <h5 class="card-title" style="line-height: 0.1;!important">SD GOAL: {{program.goal}}</h5>
+              <h5 class="card-title" style="line-height: 0.1;!important">Total Hours: {{program.project_hours}}</h5>
+              <p class="card-text">{{program.description}}</p>
               <div class="col">
                 <div class="card bg-default shadow">
                   <!-- Card header -->
@@ -132,26 +132,27 @@
                     <table class="table align-items-center table-dark table-flush">
                       <thead class="thead-dark">
                         <tr>
-                          <th scope="col" class="sort" data-sort="name">Venue</th>
-                          <th scope="col" class="sort" data-sort="status">Date</th>
+                          <th scope="col" class="sort" data-sort="venue">Venue</th>
+                          <th scope="col" class="sort" data-sort="date">Date</th>
                           <th scope="col">Hours</th>
-                          <th scope="col">Participats</th>
+                          <th scope="col">Participants</th>
                           <th scope="col"></th>
                         </tr>
                       </thead>
                       <tbody class="list">
+                        {% for occurrence in project_occurrences %}
                         <tr>
-                          <th scope="row">
-                            A Les G15
-                          </th>
-                          <td class="budget">
-                            16 Mar 23
+                          <td>
+                            {{occurrence.venue}}
+                          </td>
+                          <td class="date">
+                            {{occurrence.date}}
                           </td>
                           <td>
-                            12
+                            {{occurrence.expected_duration}}
                           </td>
                           <td>
-                            9
+                            {{occurrence.vcs_needed}}
                           </td>
                           <td class="text-right">
                             <div class="dropdown">
@@ -165,6 +166,7 @@
                             </div>
                           </td>
                         </tr>
+                        {% endfor %}
                       </tbody>
                     </table>
                   </div>
@@ -200,7 +202,7 @@
   <script src="{% static 'assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js' %}"></script>
   <script src="{% static 'assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js' %}"></script>
   <!-- Argon JS -->
-  <script src="{% static 'assets/js/argon.js?v=1.2.0' %}"></script>
+  <script src="{% static 'assets/js/argon.js' %}"></script>
 </body>
 
 </html>

@@ -9,4 +9,7 @@ urlpatterns = [
     path('volunteer-champions/', views.Volunteers.as_view(), name='vc'),
     path('volunteer-champions/student-vc/<int:pk>/details', views.svcDetials.as_view(), name='svc-details'),
 
+    path('volunteering-programs/', views.Programs.as_view(), name='programs'),
+    path('volunteering-programs/<int:pk>/details', views.ProgramsDetails.as_view(), name='program-details'),
+
 ]

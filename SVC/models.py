@@ -18,7 +18,8 @@ SD_GOALS = (
     ('LIFE ON LAND', 'LIFE ON LAND'),
     ('PEACE, JUSTICE & STRONG INSTITUTIONS', 'PEACE, JUSTICE & STRONG INSTITUTIONS'),
     ('PARTNERSHIPS FOR THE GOALS', 'PARTNERSHIPS FOR THE GOALS'),
-  )
+)
+
 class Volunteer(models.Model):
   choices_cmp = (
     ('APK', 'APK'),
@@ -71,6 +72,9 @@ class Student(Volunteer):
   recruiting_id = models.CharField(max_length=64, null=True, blank=True)
   goal= models.CharField(max_length=50, choices=SD_GOALS)
 
+  def __str__(self):
+    return self.name
+
 
 class Project(models.Model):
   choices_type = (
@@ -83,6 +87,11 @@ class Project(models.Model):
   description = models.CharField(max_length=3000, null=True)
   project_type = models.CharField(max_length=80, choices=choices_type)
   completion_code = models.CharField(max_length=60, null=True, blank=True)
+
+  def project_hours(self):
+    occurrences = self.occurrence_set.all()
+    total_hours = sum([occurrence.expected_duration for occurrence in occurrences])
+    return total_hours
 
   def __str__(self):
     return self.name

@@ -1,4 +1,5 @@
 from django.db import models
+
 SD_GOALS = (
     ('NO POVERTY', 'NO POVERTY'),
     ('ZERO HUNGER', 'ZERO HUNGER'),

@@ -1,10 +1,10 @@
 from django.views.generic import TemplateView, CreateView, ListView, UpdateView, DetailView
-from .models import Student, Project
+from .models import Student, Project, Participant
 from .forms import CreateParticipant, CreateProject, CreateStudentVC
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .utils import gen_recruiting_id
+from .utils import gen_recruiting_id,get_hours
 
 class Dashboard(ListView):
     model = Project
@@ -14,10 +14,19 @@ class Dashboard(ListView):
 
     def get_context_data(self, **kwargs):
         all_vcs = Student.objects.all()
+        champions = Participant.objects.all()
         kwargs['active_vc'] = all_vcs.filter(active=True).count()
         kwargs['active_projects'] = Project.objects.all().filter(active=True).count()
         kwargs['vc_hours'] = sum([vc.hours_completed for vc in all_vcs])
         kwargs['total_vc'] = all_vcs.count()
+        kwargs['CBE'] = get_hours('CBE',all_vcs)
+        kwargs['FADA'] = get_hours('FADA',all_vcs)
+        kwargs['FEBE'] = get_hours('FEBE',all_vcs)
+        kwargs['FED'] = get_hours('FED',all_vcs)
+        kwargs['FHS'] = get_hours('FHS',all_vcs)
+        kwargs['FSC'] = get_hours('FSC',all_vcs)
+        kwargs['LAW'] = get_hours('LAW',all_vcs)
+        kwargs['HMT'] = get_hours('HMT',all_vcs)
         return super().get_context_data(**kwargs)   
 
 def recruiment(request, code=None):

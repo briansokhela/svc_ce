@@ -83,6 +83,9 @@ class Project(models.Model):
   description = models.CharField(max_length=3000, null=True)
   project_type = models.CharField(max_length=80, choices=choices_type)
   completion_code = models.CharField(max_length=60, null=True, blank=True)
+
+  def __str__(self):
+    return self.name
   
 
 class Occurrence(models.Model):
@@ -94,7 +97,7 @@ class Occurrence(models.Model):
   active = models.BooleanField(default=False)
 
   def __str__(self):
-    return self.project.name
+    return self.project.name + '-' +str(self.date)
 
 
 class Participant(models.Model):
@@ -104,9 +107,9 @@ class Participant(models.Model):
 
   def __str__(self):
     if self.vc is not None:
-      return self.vc.name + '-' + str(self.project.date)
+      return self.vc.name + '-' + str(self.occurrence .date)
     elif self.staff is not None:
-      return self.staff.name + '-' + str(self.project.date)
+      return self.staff.name + '-' + str(self.occurrence.date)
 
 
 

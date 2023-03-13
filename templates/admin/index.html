@@ -26,9 +26,12 @@
   <!-- Favicon -->
   <link rel="icon" href="{% static 'assets/img/brand/favicon.png' %}" type="image/png">
   <!-- Fonts -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <link rel="stylesheet" href="{% static 'assets/vendor/nucleo/css/nucleo.css' %}" type="text/css"> 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
   <!-- Icons -->
-  <link rel="stylesheet" href="{% static 'assets/vendor/nucleo/css/nucleo.css' %}" type="text/css">
+  
   <link rel="stylesheet" href="{% static 'assets/vendor/@fortawesome/fontawesome-free/css/all.min.css' %}" type="text/css">
   <!-- Page plugins -->
   <!-- Argon CSS -->
@@ -114,7 +117,7 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Total SVC's</h5>
-                      <span class="h2 font-weight-bold mb-0">{{total_vc}}</span>
+                      <span class="h2 font-weight-bold mb-0">{{total_vc}}873</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
@@ -123,7 +126,7 @@
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 7.85%</span>
                     <span class="text-nowrap">Since last month</span>
                   </p>
                 </div>
@@ -135,8 +138,8 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Active SVC's</h5>
-                      <span class="h2 font-weight-bold mb-0">{{active_vc}}</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Active VC's</h5>
+                      <span class="h2 font-weight-bold mb-0">{{active_vc}}68</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
@@ -158,7 +161,7 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Active Projects</h5>
-                      <span class="h2 font-weight-bold mb-0">{{active_projects}}</span>
+                      <span class="h2 font-weight-bold mb-0">{{active_projects}}4</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
@@ -189,7 +192,7 @@
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 68%</span>
                     <span class="text-nowrap">Since last month</span>
                   </p>
                 </div>
@@ -208,20 +211,20 @@
               <div class="row align-items-center">
                 <div class="col">
                   <h6 class="text-light text-uppercase ls-1 mb-1">Overview</h6>
-                  <h5 class="h3 text-white mb-0">Sales value</h5>
+                  <h5 class="h3 text-white mb-0">VC Performance</h5>
                 </div>
                 <div class="col">
                   <ul class="nav nav-pills justify-content-end">
-                    <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales-dark" data-update='{"data":{"datasets":[{"data":[0, 20, 10, 30, 15, 40, 20, 60, 60]}]}}' data-prefix="$" data-suffix="k">
+                    <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales-dark" data-update='{"data":{"datasets":[{"data":[0, 20, 10, 30, 15, 40, 20, 60, 60]}]}}' data-prefix="" data-suffix="">
                       <a href="#" class="nav-link py-2 px-3 active" data-toggle="tab">
-                        <span class="d-none d-md-block">Month</span>
-                        <span class="d-md-none">M</span>
+                        <span class="d-none d-md-block">New VC's</span>
+                        <span class="d-md-none">NAC</span>
                       </a>
                     </li>
-                    <li class="nav-item" data-toggle="chart" data-target="#chart-sales-dark" data-update='{"data":{"datasets":[{"data":[0, 20, 5, 25, 10, 30, 15, 40, 40]}]}}' data-prefix="$" data-suffix="k">
+                    <li class="nav-item" data-toggle="chart" data-target="#chart-sales-dark" data-update='{"data":{"datasets":[{"data":[0, 20, 5, 25, 10, 30, 15, 40, 40]}]}}' data-prefix="" data-suffix="">
                       <a href="#" class="nav-link py-2 px-3" data-toggle="tab">
-                        <span class="d-none d-md-block">Week</span>
-                        <span class="d-md-none">W</span>
+                        <span class="d-none d-md-block">Active VC's</span>
+                        <span class="d-md-none">AVC</span>
                       </a>
                     </li>
                   </ul>
@@ -243,7 +246,7 @@
               <div class="row align-items-center">
                 <div class="col">
                   <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-                  <h5 class="h3 mb-0">Total orders</h5>
+                  <h5 class="h3 mb-0">Hours Volunteered</h5>
                 </div>
               </div>
             </div>
@@ -262,7 +265,7 @@
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Page visits</h3>
+                  <h3 class="mb-0">Top volunteers</h3>
                 </div>
                 <div class="col text-right">
                   <a href="#!" class="btn btn-sm btn-primary">See all</a>
@@ -274,81 +277,81 @@
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col">Page name</th>
-                    <th scope="col">Visitors</th>
-                    <th scope="col">Unique users</th>
-                    <th scope="col">Bounce rate</th>
+                    <th scope="col">VC Name</th>
+                    <th scope="col">Hours</th>
+                    <th scope="col">Projects Completed</th>
+                    <th scope="col">Contribution</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <th scope="row">
-                      /argon/
+                      Bernard Haldy Ken
                     </th>
                     <td>
-                      4,569
+                      154
                     </td>
                     <td>
-                      340
+                      17
                     </td>
                     <td>
-                      <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
+                      <i class="fas fa-arrow-up text-success mr-3"></i> 5.3%
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">
-                      /argon/index.html
+                      Hantsi Taumang
                     </th>
                     <td>
-                      3,985
+                      123
                     </td>
                     <td>
-                      319
+                      14
                     </td>
                     <td>
-                      <i class="fas fa-arrow-down text-warning mr-3"></i> 46,53%
+                      <i class="fas fa-arrow-down text-warning mr-3"></i> 3.7%
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">
-                      /argon/charts.html
+                      Brian Sokhela
                     </th>
                     <td>
-                      3,513
+                      98
                     </td>
                     <td>
-                      294
+                      12
                     </td>
                     <td>
-                      <i class="fas fa-arrow-down text-warning mr-3"></i> 36,49%
+                      <i class="fas fa-arrow-down text-warning mr-3"></i> 2.6%
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">
-                      /argon/tables.html
+                      Nkagele Mogashoa
                     </th>
                     <td>
-                      2,050
+                      74
                     </td>
                     <td>
-                      147
+                      9
                     </td>
                     <td>
-                      <i class="fas fa-arrow-up text-success mr-3"></i> 50,87%
+                      <i class="fas fa-arrow-up text-success mr-3"></i> 1.4%
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">
-                      /argon/profile.html
+                      Shanice De Bruin
                     </th>
                     <td>
-                      1,795
+                      66
                     </td>
                     <td>
-                      190
+                      7
                     </td>
                     <td>
-                      <i class="fas fa-arrow-down text-danger mr-3"></i> 46,53%
+                      <i class="fas fa-arrow-down text-danger mr-3"></i> 0.98%
                     </td>
                   </tr>
                 </tbody>
@@ -361,7 +364,7 @@
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Social traffic</h3>
+                  <h3 class="mb-0">Faculty Hours</h3>
                 </div>
                 <div class="col text-right">
                   <a href="#!" class="btn btn-sm btn-primary">See all</a>
@@ -373,15 +376,15 @@
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col">Referral</th>
-                    <th scope="col">Visitors</th>
+                    <th scope="col">Faculty</th>
+                    <th scope="col">Hours</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <th scope="row">
-                      Facebook
+                      Law
                     </th>
                     <td>
                       1,480
@@ -399,7 +402,7 @@
                   </tr>
                   <tr>
                     <th scope="row">
-                      Facebook
+                      Humanities
                     </th>
                     <td>
                       5,480
@@ -417,7 +420,7 @@
                   </tr>
                   <tr>
                     <th scope="row">
-                      Google
+                      CBE
                     </th>
                     <td>
                       4,807
@@ -435,7 +438,7 @@
                   </tr>
                   <tr>
                     <th scope="row">
-                      Instagram
+                      Health Science
                     </th>
                     <td>
                       3,678
@@ -453,7 +456,7 @@
                   </tr>
                   <tr>
                     <th scope="row">
-                      twitter
+                      Education
                     </th>
                     <td>
                       2,645

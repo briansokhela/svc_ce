@@ -98,4 +98,11 @@ class ProgramsDetails(DetailView):
         kwargs['project_occurrences'] = self.get_object().occurrence_set.all()
         return super().get_context_data(**kwargs)
 
+class AddNewProgram(CreateView):
+    model = Project
+    form_class = CreateProject
+    success_url = '/volunteering-programs/'
+    template_name = 'admin/add-program.html'
+
+
 

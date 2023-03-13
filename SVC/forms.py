@@ -77,7 +77,32 @@ class CreateStudentVC(forms.ModelForm):
 class CreateProject(forms.ModelForm):
     class Meta:
         model = Project
-        fields = '__all__'
+        fields = '__all__'  
+        widgets = {
+            'name': forms.TextInput(
+                attrs={
+                    'class':'form-control',
+                    'type':'text',
+                }
+            ),
+            'project_type': forms.Select(
+                attrs={
+                    'class':'form-control',
+                }
+            ),
+            'goal': forms.Select(
+                attrs={
+                    'class':'form-control',
+                }
+            ),
+            'description': forms.Textarea(
+                attrs={
+                    'class':'form-control',
+                    'row':'5'
+                }
+            ),
+
+        }
 
 class CreateParticipant(forms.ModelForm):
     class Meta:

@@ -11,5 +11,6 @@ urlpatterns = [
 
     path('volunteering-programs/', views.Programs.as_view(), name='programs'),
     path('volunteering-programs/<int:pk>/details', views.ProgramsDetails.as_view(), name='program-details'),
+    path('volunteering-programs/add-new/', views.AddNewProgram.as_view(), name='add-program'),
 
 ]

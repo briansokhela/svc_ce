@@ -96,13 +96,12 @@
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item">General</li>
-                  <li class="breadcrumb-item active">Details</li>
+                  <li class="breadcrumb-item">Occurrence</li>
+                  <li class="breadcrumb-item active">Add Participant</li>
                 </ol>
               </nav>
             </div>
-            <div class="col-lg-6 col-5 text-right">
-              <a href="{% url 'add-occurrence' %}" class="btn btn-sm btn-neutral">Add New</a>
-            </div>
+
           </div>
         </div>
       </div>
@@ -113,73 +112,24 @@
       <div class="row">
         <div class="col">
 
-          <div class="card">
-            <div class="card-header">
-              {{program.project_type}}
-            </div>
-            <div class="card-body">
-              <h1 class="card-title">{{program.name}}</h1>
-              <h5 class="card-title" style="line-height: 0.1;!important">SD GOAL: {{program.goal}}</h5>
-              <h5 class="card-title" style="line-height: 0.1;!important">Total Hours: {{program.project_hours}}</h5>
-              <p class="card-text">{{program.description}}</p>
-              <div class="col">
-                <div class="card bg-default shadow">
-                  <!-- Card header -->
-                  <div class="card-header bg-transparent border-0">
-                    <h3 class="text-white mb-0">Occurrences</h3>
+          <div class="card bg-secondary border-0 mb-0">
+            <div class="card-body px-lg-5 py-lg-5">
+                <center>
+                  <h1 class="card-title">Add Program Participant</h1>
+                
+                  <div class='col-6'>
+                    <form role="form" method='POST'>
+                      {% csrf_token %}
+                      <center>{{form.as_p}}</center>
+                      <div class="text-center">
+                        <button type="submit" class="btn btn-primary my-4">Add VC</button>
+                      </div>
+                    </form>
                   </div>
-                  <!-- Light table -->
-                  <div class="table-responsive">
-                    <table class="table align-items-center table-dark table-flush">
-                      <thead class="thead-dark">
-                        <tr>
-                          <th scope="col" class="sort" data-sort="venue">Venue</th>
-                          <th scope="col" class="sort" data-sort="date">Date</th>
-                          <th scope="col">Hours</th>
-                          <th scope="col">Participants</th>
-                          <th scope="col"></th>
-                        </tr>
-                      </thead>
-                      <tbody class="list">
-                        {% for occurrence in project_occurrences %}
-                        <tr>
-                          <td>
-                            {{occurrence.venue}}
-                          </td>
-                          <td class="date">
-                            {{occurrence.date}}
-                          </td>
-                          <td>
-                            {{occurrence.expected_duration}}
-                          </td>
-                          <td>
-                            {{occurrence.vcs_needed}}
-                          </td>
-                          <td class="text-right">
-                            <div class="dropdown">
-                              <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-ellipsis-v"></i>
-                              </a>
-                              <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                <a class="dropdown-item" href="{% url 'add-participant' %}">Add VC</a>
-                                <a class="dropdown-item" href="#">Delete</a>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                        {% endfor %}
-                      </tbody>
-                    </table>
-                  </div>
-      
-                </div>
-              </div>
+              </center>
             </div>
           </div>
-
-
         </div>
-
         </div>
       </div>
       <!-- Footer -->

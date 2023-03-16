@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 SD_GOALS = (
     ('NO POVERTY', 'NO POVERTY'),
@@ -101,9 +102,9 @@ class Occurrence(models.Model):
   project = models.ForeignKey(Project, on_delete=models.CASCADE, null=True)
   venue = models.CharField(max_length=120)
   vcs_needed = models.IntegerField()
-  date = models.DateTimeField()
+  date = models.DateTimeField(default=datetime.now(), blank=True)
   expected_duration = models.IntegerField()
-  active = models.BooleanField(default=False)
+  active = models.BooleanField(default=False, blank=True)
 
   def __str__(self):
     return self.project.name + '-' +str(self.date)

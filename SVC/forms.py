@@ -1,5 +1,5 @@
 from django import forms
-from .models import Student, Project, Participant
+from .models import Student, Project, Participant, Occurrence
 
 class CreateStudentVC(forms.ModelForm):
     class Meta:
@@ -98,13 +98,63 @@ class CreateProject(forms.ModelForm):
             'description': forms.Textarea(
                 attrs={
                     'class':'form-control',
-                    'row':'5'
+                    'row':'5',
+                    'placeholder':'Enter text here',
                 }
             ),
 
         }
 
+class CreateOccurence(forms.ModelForm):
+    class Meta:
+        model = Occurrence
+        fields = '__all__'
+        widgets = {
+            'project':forms.Select(
+                attrs={
+                    'class':'form-control',
+                }
+            ),
+            'venue':forms.TextInput(
+                attrs={
+                    'class':'form-control',
+                    'type':'text',
+
+                }
+            ),
+            'vcs_needed':forms.NumberInput(
+                attrs={
+                    'class':'form-control',
+                    'type':'number',
+                }
+            ),
+            'expected_duration':forms.NumberInput(
+                attrs={
+                    'class':'form-control',
+                    'type':'number',
+                }
+            )
+
+        }
+        
 class CreateParticipant(forms.ModelForm):
     class Meta:
-        models = Participant
+        model = Participant
         fields = '__all__'
+        widgets = {
+            'occurrence':forms.Select(
+                attrs={
+                    'class':'form-control',
+                }
+            ),
+            'vc':forms.Select(
+                attrs={
+                    'class':'form-control',
+                }
+            ),
+            'staff':forms.Select(
+                attrs={
+                    'class':'form-control',
+                }
+            ),
+        }

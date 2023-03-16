@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView, CreateView, ListView, UpdateView, DetailView
-from .models import Student, Project, Volunteer, Staff, Participant
-from .forms import CreateParticipant, CreateProject, CreateStudentVC
+from .models import Student, Project, Volunteer, Staff, Participant, Occurrence
+from .forms import CreateParticipant, CreateProject, CreateStudentVC, CreateOccurence
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -103,6 +103,19 @@ class AddNewProgram(CreateView):
     form_class = CreateProject
     success_url = '/volunteering-programs/'
     template_name = 'admin/add-program.html'
+
+class AddProgramOccurrence(CreateView):
+    model = Occurrence
+    form_class = CreateOccurence
+    success_url = '/volunteering-programs/'
+    template_name = 'admin/add-occurrence.html'
+
+class AddParticipants(CreateView):
+    model = Participant
+    form_class = CreateParticipant
+    success_url = '/volunteering-programs/'
+    template_name = 'admin/add-participant.html'
+
 
 
 

@@ -147,12 +147,7 @@ class CreateParticipant(forms.ModelForm):
                     'class':'form-control',
                 }
             ),
-            'vc':forms.Select(
-                attrs={
-                    'class':'form-control',
-                }
-            ),
-            'staff':forms.Select(
+            'volunteer':forms.Select(
                 attrs={
                     'class':'form-control',
                 }

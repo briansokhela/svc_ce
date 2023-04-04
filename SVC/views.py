@@ -4,7 +4,7 @@ from .forms import CreateParticipant, CreateProject, CreateStudentVC, CreateOccu
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .utils import gen_recruiting_id,get_hours
+from .utils import gen_recruiting_id, get_hours, prj_type_hours
 
 class Dashboard(ListView):
     model = Project
@@ -16,7 +16,7 @@ class Dashboard(ListView):
         champions = Participant.objects.all()
         kwargs['active_vc'] = all_vcs.filter(active=True).count()
         kwargs['active_projects'] = 0
-        kwargs['vc_hours'] = sum([vc.hours_completed for vc in all_vcs])
+        kwargs['vc_hours'] = 0
         kwargs['total_vc'] = all_vcs.count()
         kwargs['CBE'] = get_hours('College of Business and Economics',champions)
         kwargs['FADA'] = get_hours('Faculty of Arts, Design and Architecture',champions)
@@ -88,6 +88,13 @@ class Programs(ListView):
     queryset = Project.objects.all()
     context_object_name = 'projects'
     template_name = 'admin/programs.html'
+
+    def get_context_data(self, **kwargs):
+        project_type_hours = prj_type_hours()
+        kwargs['sl'] = project_type_hours['sl']
+        kwargs['oo'] = project_type_hours['oo']
+        kwargs['cbr'] = project_type_hours['cbr']
+        return super().get_context_data(**kwargs)
 
 class ProgramsDetails(DetailView):
     model = Project

@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Student, Project, Staff, Occurrence, Participant
 
 class StudentAdmin(admin.ModelAdmin):
-  list_display = ('name', 'surname', 'access_number', 'hours_completed')
+  list_display = ('name', 'surname', 'access_number')
 
 class ProjectsAdmin(admin.ModelAdmin):
   list_display =('name', 'goal', 'project_type')

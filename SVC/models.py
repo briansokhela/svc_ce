@@ -40,11 +40,15 @@ class Volunteer(models.Model):
   cellphone = models.CharField(max_length=10)
   date_joined = models.DateField(auto_now_add=True, blank=True)
   access_number = models.CharField(max_length=9)
-  hours_completed = models.IntegerField(default=0)
   active = models.BooleanField(default=False)
 
   class meta:
     abstract = True
+
+  def get_total_hours(self):
+    participations = self.participant_set.all().filter(completed_program=True)
+    total_hours = sum([vc.occurrence.expected_duration for vc in participations])
+    return total_hours
   
   def __str__(self):
     return self.access_number
@@ -112,8 +116,9 @@ class Occurrence(models.Model):
 
 class Participant(models.Model):
   occurrence = models.ForeignKey(Occurrence, on_delete=models.SET_NULL, null=True)
-  vc = models.ForeignKey(Student, on_delete=models.SET_NULL, null=True, blank=True)
-  staff = models.ForeignKey(Staff, on_delete=models.SET_NULL, null=True, blank=True)
+  vc = models.ForeignKey(Student, on_delete=models.SET_NULL, null=True)
+  staff = models.ForeignKey(Staff, on_delete=models.SET_NULL, null=True)
+  completed_program = models.BooleanField(default=False)
 
   def __str__(self):
     if self.vc is not None:

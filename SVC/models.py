@@ -27,6 +27,7 @@ class Volunteer(models.Model):
     ('APB', 'APB'),
     ('SWC', 'SWC'),
     ('DFC', 'DFC'),
+    ('sd','sd'),
   )
   choices_gnd = (
     ('M', 'Male'),
